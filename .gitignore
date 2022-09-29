@@ -1,2 +1,4 @@
 /.idea/
 /ibee-demo/ibee-demo-json/target/
+/ibee-swagger/target/
+/ibee-demo/ibee-demo-web/target/

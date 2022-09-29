@@ -17,6 +17,7 @@
 
     <modules>
         <module>ibee-demo</module>
+        <module>ibee-swagger</module>
     </modules>
 
     <properties>
