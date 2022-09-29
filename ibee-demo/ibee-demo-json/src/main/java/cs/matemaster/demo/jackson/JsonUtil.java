@@ -1,4 +1,4 @@
-package cs.matemaster.demo;
+package cs.matemaster.demo.jackson;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
