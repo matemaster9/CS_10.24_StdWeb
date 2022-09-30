@@ -9,7 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = {
         ScannablePackages.WebApp,
-        ScannablePackages.Swagger
+        ScannablePackages.Swagger,
+        ScannablePackages.Global
 })
 public class WebApplication {
     public static void main(String[] args) {

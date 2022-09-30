@@ -18,6 +18,8 @@
     <modules>
         <module>ibee-demo</module>
         <module>ibee-swagger</module>
+        <module>ibee-httpclient</module>
+        <module>ibee-global</module>
     </modules>
 
     <properties>

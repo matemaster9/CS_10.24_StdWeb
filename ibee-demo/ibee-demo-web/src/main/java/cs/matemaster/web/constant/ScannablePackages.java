@@ -7,5 +7,7 @@ public interface ScannablePackages {
 
     String Swagger = "cs.matemaster.swagger";
 
-    String WebApp = "cs.maemaster.web";
+    String WebApp = "cs.matemaster.web";
+
+    String Global = "cs.matemaster.global";
 }
