@@ -20,6 +20,7 @@
         <module>ibee-swagger</module>
         <module>ibee-httpclient</module>
         <module>ibee-global</module>
+        <module>ibee-jackson</module>
     </modules>
 
     <properties>
