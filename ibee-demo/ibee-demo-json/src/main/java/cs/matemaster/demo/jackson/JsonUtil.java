@@ -12,14 +12,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class JsonUtil {
 
-    private static final ObjectMapper Mapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static String serialize(Object arg) {
         if (arg == null) {
             return null;
         }
         try {
-            return Mapper.writeValueAsString(arg);
+            return OBJECT_MAPPER.writeValueAsString(arg);
         } catch (JsonProcessingException ignore) {
             return null;
         }
@@ -30,8 +30,8 @@ public final class JsonUtil {
             return null;
         }
         try {
-            Mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
-            return Mapper.writeValueAsString(arg);
+            OBJECT_MAPPER.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
+            return OBJECT_MAPPER.writeValueAsString(arg);
         } catch (JsonProcessingException ignore) {
             return null;
         }
@@ -43,8 +43,8 @@ public final class JsonUtil {
         }
 
         try {
-            Mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            return Mapper.readValue(jsonStr, type);
+            OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            return OBJECT_MAPPER.readValue(jsonStr, type);
         } catch (JsonProcessingException ignore) {
             return null;
         }
@@ -56,8 +56,8 @@ public final class JsonUtil {
         }
 
         try {
-            Mapper.disable(JsonGenerator.Feature.IGNORE_UNKNOWN);
-            return Mapper.readValue(jsonStr, typeReference);
+            OBJECT_MAPPER.disable(JsonGenerator.Feature.IGNORE_UNKNOWN);
+            return OBJECT_MAPPER.readValue(jsonStr, typeReference);
         } catch (JsonProcessingException ignore) {
             return null;
         }
