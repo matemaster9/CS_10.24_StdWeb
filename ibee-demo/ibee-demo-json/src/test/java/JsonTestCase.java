@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -9,7 +10,9 @@ import cs.matemaster.demo.jackson.domain.ClubMemberVO;
 import cs.matemaster.demo.jackson.domain.ComStaffBriefDto;
 import cs.matemaster.demo.jackson.domain.CompanyDto;
 import cs.matemaster.demo.jackson.domain.ComputerBriefDto;
+import cs.matemaster.demo.jackson.domain.MyDto;
 import cs.matemaster.demo.jackson.domain.OrderDto;
+import cs.matemaster.demo.jackson.domain.SysUserDto;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -190,6 +193,7 @@ public class JsonTestCase {
 
     /**
      * 忽略属性 @JsonInclude(JsonInclude.Include.NON_NULL)
+     *
      * @throws JsonProcessingException
      */
     @Test
@@ -205,5 +209,47 @@ public class JsonTestCase {
         whole.setCode("M9879079821");
 
         System.out.println(OBJECT_MAPPER.writeValueAsString(whole));
+    }
+
+    /**
+     * 避免不匹配值 OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+     *
+     * @throws JsonProcessingException
+     */
+    @Test
+    public void case10() throws JsonProcessingException {
+        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        String jsonContent = "{\"str\":\"java.lang.String\",\"bool\":true,\"unknown\":1}";
+        MyDto myDto = OBJECT_MAPPER.readValue(jsonContent, MyDto.class);
+        System.out.println(myDto);
+
+        String jsonContent1 = "{\"str\":\"java.lang.String\"}";
+        MyDto myDto1 = OBJECT_MAPPER.readValue(jsonContent1, MyDto.class);
+        System.out.println(myDto1);
+
+        String jsonContent2 = "{\"str\":\"java.lang.String\",\"unknown\":1}";
+        MyDto myDto2 = OBJECT_MAPPER.readValue(jsonContent2, MyDto.class);
+        System.out.println(myDto2);
+    }
+
+    /**
+     * 忽略不匹配值 @JsonIgnoreProperties(ignoreUnknown = true)
+     *
+     * @throws JsonProcessingException
+     */
+    @Test
+    public void case11() throws JsonProcessingException {
+        String jsonContent = "{\"username\":\"mate-master\",\"password\":\"VBHJKEBJHKW\"}";
+        SysUserDto sysUserDto = OBJECT_MAPPER.readValue(jsonContent, SysUserDto.class);
+        System.out.println(sysUserDto);
+
+        String jsonContent1 = "{\"username\":\"mate-master\"}";
+        SysUserDto sysUserDto1 = OBJECT_MAPPER.readValue(jsonContent1, SysUserDto.class);
+        System.out.println(sysUserDto1);
+
+        String jsonContent2 = "{\"username\":\"mate-master\",\"password\":\"VBHJKEBJHKW\",\"unknown\":1}";
+        SysUserDto sysUserDto2 = OBJECT_MAPPER.readValue(jsonContent2, SysUserDto.class);
+        System.out.println(sysUserDto2);
     }
 }
