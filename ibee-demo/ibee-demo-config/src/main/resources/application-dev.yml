@@ -1,0 +1,60 @@
+# RandomValueConfig & AnotherRandomValueConfig
+random-value:
+  secret: ${random.value}
+  number: ${random.int}
+  big-number: ${random.long(1,9999999999)}
+  uuid: ${random.uuid}
+  less-ten: ${random.int(10)}
+  range: ${random.int[1,100]}
+
+# AppInfoConfig
+app-info:
+  server: 127.0.0.1
+  port: 100098
+  name: JavaWeb
+  description: ${app.name} is a Spring Boot application
+
+# StandardConfig
+standard:
+  username: standard
+  password: z32M0vpgLQzmKCUk
+  inet-address-list:
+    - 226.9.155.25
+    - 137.250.72.192
+    - 112.158.137.142
+    - 146.171.133.73
+    - 26.229.232.254
+
+# ConstructorBingingConfig
+constructor:
+  username: constructor
+  password: EiWHROwMVigVCv8u
+  inet-address-list:
+    - 158.40.224.180
+    - 239.222.129.209
+    - 252.90.31.93
+    - 21.14.132.91
+    - 125.156.144.7
+
+# MultiConstructorBingingConfig
+multi-constructor:
+  username: multiConstructor
+  password: Igr226CiaDwXCs14
+  inet-address-list:
+    - 179.74.81.55
+    - 206.34.196.205
+    - 231.160.85.178
+    - 163.85.5.251
+    - 40.197.222.155
+
+# YmlProperties
+yaml:
+  string-list:
+    - aaaa
+    - bbbb
+  string-object-map:
+    'aaa': bbb
+  string-array: 'akvbh','vabna'
+
+# Third-party Configuration
+third-party-configuration:
