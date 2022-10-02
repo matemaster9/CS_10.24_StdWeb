@@ -47,14 +47,19 @@ multi-constructor:
     - 163.85.5.251
     - 40.197.222.155
 
-# YmlProperties
+# YmlConf
 yaml:
   string-list:
-    - aaaa
-    - bbbb
+    - oee1YrIv
+    - BI1xzzKm
+    - Ue1fH1Qk
   string-object-map:
-    'aaa': bbb
-  string-array: 'akvbh','vabna'
+    Integer: 1
+    Long: 999999999
+    Boolean: true
+    Character: a
 
-# Third-party Configuration
-third-party-configuration:
+  string-array:
+    - oee1YrIv
+    - BI1xzzKm
+    - Ue1fH1Qk
