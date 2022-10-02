@@ -64,25 +64,6 @@ yaml:
     - BI1xzzKm
     - Ue1fH1Qk
 
-# AppSystemProperties
-app.system:
-  month-map:
-    1: [ Jan. ]
-    2: [ Feb. ]
-    3: [ Mar. ]
-    4: [ Apr. ]
-    5: [ May ]
-    6: [ Jun. ]
-    7: [ Jul. ]
-    8: [ Aug. ]
-    9: [ Sep. ]
-    10: [ Oct. ]
-    11: [ Nov. ]
-    12: [ Dec. ]
-  system-users:
-    root: { "username": "mate-master","password": "gLObQK0kZZVMVsOCIhaK" }
-    guest: { "username": "jackson","password": "gWf6Tz5WiOgsUqSUFxam" }
-
 # ServerProperties
 web.server:
   application:
@@ -106,3 +87,22 @@ web.server:
     guest:
       username: guest
       password: m8CW0LO3GGIsclO207DE
+
+# AppSystemProperties
+app.system:
+  month-map:
+    1: [ Jan. ]
+    2: [ Feb. ]
+    3: [ Mar. ]
+    4: [ Apr. ]
+    5: [ May ]
+    6: [ Jun. ]
+    7: [ Jul. ]
+    8: [ Aug. ]
+    9: [ Sep. ]
+    10: [ Oct. ]
+    11: [ Nov. ]
+    12: [ Dec. ]
+  system-users:
+    root: { "username": "mate-master","password": "gLObQK0kZZVMVsOCIhaK" }
+    guest: { "username": "jackson","password": "gWf6Tz5WiOgsUqSUFxam" }
