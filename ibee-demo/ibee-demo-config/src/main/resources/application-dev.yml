@@ -63,3 +63,43 @@ yaml:
     - oee1YrIv
     - BI1xzzKm
     - Ue1fH1Qk
+
+# AppSystemProperties
+app.system:
+  month-map:
+    1: [ Jan. ]
+    2: [ Feb. ]
+    3: [ Mar. ]
+    4: [ Apr. ]
+    5: [ May ]
+    6: [ Jun. ]
+    7: [ Jul. ]
+    8: [ Aug. ]
+    9: [ Sep. ]
+    10: [ Oct. ]
+    11: [ Nov. ]
+    12: [ Dec. ]
+
+# ServerProperties
+web.server:
+  application:
+    name: InjectMapFromYAML
+    url: http://injectmapfromyaml.dev
+    description: How To Inject a map from a YAML File in Spring Boot
+  config:
+    ip-list:
+      - 10.10.10.10
+      - 10.10.10.11
+      - 10.10.10.12
+      - 10.10.10.13
+    file-system:
+      - /dev/root
+      - /dev/md2
+      - /dev/md4
+  users:
+    root:
+      username: root
+      password: Ti3Ka3x8T8y0cPrfuYIj
+    guest:
+      username: guest
+      password: m8CW0LO3GGIsclO207DE

@@ -4,6 +4,8 @@ import cs.matemaster.demo.config.externalize.MultiConstructorBingingConfig;
 import cs.matemaster.demo.config.externalize.RandomValueConfig;
 import cs.matemaster.demo.config.externalize.StandardConfig;
 import cs.matemaster.demo.config.externalize.YmlConf;
+import cs.matemaster.demo.config.properties.AppSystemProperties;
+import cs.matemaster.demo.config.properties.WebServerProperties;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,12 @@ public class SpringWebTest {
     @Autowired
     private YmlConf ymlConf;
 
+    @Autowired
+    private AppSystemProperties appSystemProperties;
+
+    @Autowired
+    private WebServerProperties serverProperties;
+
     @Test
     public void test() {
         System.out.println(randomValueConfig);
@@ -42,5 +50,7 @@ public class SpringWebTest {
         System.out.println(constructorBingingConfig);
         System.out.println(multiConstructorBingingConfig);
         System.out.println(ymlConf);
+        System.out.println(appSystemProperties);
+        System.out.println(serverProperties);
     }
 }
