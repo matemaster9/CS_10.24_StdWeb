@@ -22,6 +22,7 @@
         <module>ibee-global</module>
         <module>ibee-jackson</module>
         <module>ibee-common</module>
+        <module>ibee-tech</module>
     </modules>
 
     <properties>
