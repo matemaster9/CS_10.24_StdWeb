@@ -57,6 +57,12 @@
             <artifactId>ibee-swagger</artifactId>
             <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>cs.matemaster.global</groupId>
+            <artifactId>ibee-global</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>

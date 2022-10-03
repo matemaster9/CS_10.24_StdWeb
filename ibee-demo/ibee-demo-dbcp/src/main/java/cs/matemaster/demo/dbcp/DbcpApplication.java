@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = {
         "cs.matemaster.demo.dbcp",
-        "cs.matemaster.swagger"
+        "cs.matemaster.swagger",
+        "cs.matemaster.global"
 })
 public class DbcpApplication {
     public static void main(String[] args) {
