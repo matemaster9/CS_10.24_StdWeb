@@ -21,6 +21,7 @@
         <module>ibee-httpclient</module>
         <module>ibee-global</module>
         <module>ibee-jackson</module>
+        <module>ibee-common</module>
     </modules>
 
     <properties>
