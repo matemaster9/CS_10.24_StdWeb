@@ -1,0 +1,5 @@
+springdoc:
+  swagger-ui:
+    enabled: true
+    supported-submit-methods: get,post,put,delete
+  packages-to-scan: cs.matemaster.demo.springdoc.controller
