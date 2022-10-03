@@ -1,6 +1,9 @@
 package cs.matemaster.demo.dbcp.controller;
 
-import cs.matemaster.demo.dbcp.domain.SystemUserDto;
+import cs.matemaster.demo.dbcp.facade.SysUserFacade;
+import cs.matemaster.demo.dbcp.model.LogoutRequest;
+import cs.matemaster.demo.dbcp.model.RegisterRequest;
+import cs.matemaster.demo.dbcp.model.UpdateUserRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -18,15 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class SysUserController {
 
+    private SysUserFacade sysUserFacade;
+
     @ApiOperation("注册用户")
     @PostMapping("register")
-    public Boolean register(@RequestBody SystemUserDto user) {
-        return true;
+    public String register(@RequestBody RegisterRequest request) {
+        return sysUserFacade.register(request);
     }
 
-    @ApiOperation("更新信息l")
+    @ApiOperation("更新信息")
     @PostMapping("update")
-    public Boolean update(@RequestBody SystemUserDto user) {
-        return true;
+    public Boolean update(@RequestBody UpdateUserRequest request) {
+        return sysUserFacade.update(request);
+    }
+
+    @ApiOperation("注销用户")
+    @PostMapping("logoutUser")
+    public Boolean logoutUser(@RequestBody LogoutRequest request) {
+        return sysUserFacade.logoutUser(request);
     }
 }
