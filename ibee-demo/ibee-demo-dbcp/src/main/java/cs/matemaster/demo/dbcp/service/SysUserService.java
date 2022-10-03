@@ -8,7 +8,7 @@ import cs.matemaster.demo.dbcp.domain.SystemUserDto;
 public interface SysUserService {
     Boolean logoutUser(SystemUserDto systemUser);
 
-    String register(SystemUserDto systemUser);
+    void register(SystemUserDto systemUser);
 
     Boolean update(SystemUserDto systemUser);
 }
