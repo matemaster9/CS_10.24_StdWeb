@@ -52,6 +52,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cs.matemaster.swagger</groupId>
+            <artifactId>ibee-swagger</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>
