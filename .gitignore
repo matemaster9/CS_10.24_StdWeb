@@ -7,6 +7,7 @@
 /ibee-jackson/target/
 /ibee-httpclient/target/
 /ibee-demo/ibee-demo-config/target/
+/ibee-demo/ibee-demo-dbcp/target/
 /ibee-common/target/
 /ibee-demo/ibee-demo-springdoc/target/
 /ibee-tech/ibee-tech-springdoc/target/

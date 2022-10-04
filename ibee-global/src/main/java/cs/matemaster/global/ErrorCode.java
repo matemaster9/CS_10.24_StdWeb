@@ -11,14 +11,17 @@ import lombok.Getter;
 public enum ErrorCode implements BaseCode {
 
     SUCCESS("SUC0000", "成功"),
-    UNKNOWN("ERR0000", "未知错误");
+    UNKNOWN("ERR0000", "未知错误"),
+
+    ILLEGAL_PARAMETER("ERROOO1", "非法参数"),
+    ;
 
     private final String code;
     private final String message;
 
     @Override
     public String getCode() {
-        return  code;
+        return code;
     }
 
     @Override

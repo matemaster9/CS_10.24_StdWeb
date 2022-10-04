@@ -1,0 +1,14 @@
+# dev-docs
+swagger:
+  enable: true
+  title: DevDocs
+  version: 1.0
+  description: 后端接口
+
+# MySQL + HikariCP
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.223.52.246:3306/stdweb
+    username: root
+    password: matemaster98

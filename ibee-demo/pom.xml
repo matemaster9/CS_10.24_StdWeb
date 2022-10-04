@@ -17,6 +17,7 @@
         <module>ibee-demo-swagger3</module>
         <module>ibee-demo-config</module>
         <module>ibee-demo-springdoc</module>
+        <module>ibee-demo-dbcp</module>
     </modules>
 
     <properties>
