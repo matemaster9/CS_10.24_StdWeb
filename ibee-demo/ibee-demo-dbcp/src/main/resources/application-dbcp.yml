@@ -9,6 +9,6 @@ swagger:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/stdweb
+    url: jdbc:mysql://124.223.52.246:3306/stdweb
     username: root
-    password: AhfQ4KKf
+    password: matemaster98

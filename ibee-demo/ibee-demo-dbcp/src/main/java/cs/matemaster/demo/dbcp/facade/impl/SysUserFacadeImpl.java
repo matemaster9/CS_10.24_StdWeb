@@ -52,6 +52,7 @@ public class SysUserFacadeImpl implements SysUserFacade {
         request.check();
 
         SystemUserDto systemUser = new SystemUserDto();
+        systemUser.setUsername(request.getUsername());
         systemUser.setPassword(request.getPassword());
         systemUser.setRegisterPhone(request.getPhoneNumber());
 
