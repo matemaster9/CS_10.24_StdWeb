@@ -6,6 +6,7 @@
 /ibee-global/target/
 /ibee-jackson/target/
 /ibee-httpclient/target/
+/ibee-demo/ibee-demo-httpcomponents/target/
 /ibee-demo/ibee-demo-config/target/
 /ibee-demo/ibee-demo-dbcp/target/
 /ibee-common/target/
