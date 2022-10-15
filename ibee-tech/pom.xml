@@ -15,6 +15,7 @@
     <modules>
         <module>ibee-tech-springdoc</module>
         <module>ibee-tech-httpclient4</module>
+        <module>ibee-tech-redis</module>
     </modules>
 
     <properties>
