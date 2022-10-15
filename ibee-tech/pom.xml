@@ -14,6 +14,7 @@
     <description>前沿技术探究</description>
     <modules>
         <module>ibee-tech-springdoc</module>
+        <module>ibee-tech-httpclient4</module>
     </modules>
 
     <properties>
