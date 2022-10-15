@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = {
         "cs.matemaster.tech.redis",
-        "cs.matemaster.tech.springdoc"
+        "cs.matemaster.tech.springdoc",
+        "cs.matemaster.jackson"
 })
 public class RedisApplication {
 
