@@ -1,5 +1,6 @@
 import cs.matemaster.demo.jedis.JedisApplication;
 import cs.matemaster.demo.jedis.domain.EsportPlayer;
+import cs.matemaster.jackson.JacksonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import redis.clients.jedis.Jedis;
 
 /**
  * @author matemaster
@@ -21,6 +23,9 @@ public class SpringWebTest {
     @Autowired
     public RedisTemplate<String, Object> redisTemplate;
 
+    @Autowired
+    private Jedis jedisClient;
+
     @Test
     public void add() {
         EsportPlayer esportPlayer = EsportPlayer.mock();
@@ -31,5 +36,11 @@ public class SpringWebTest {
     public void get() {
         Object esport = redisTemplate.opsForValue().get("Esport_3770735482659699292");
         logger.info(esport.toString());
+    }
+
+    @Test
+    public void set() {
+        EsportPlayer esportPlayer = EsportPlayer.mock();
+        jedisClient.set("Esport_" + esportPlayer.getName(), JacksonUtil.serialize(esportPlayer));
     }
 }

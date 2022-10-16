@@ -5,7 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author matemaster
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+        "cs.matemaster.demo.jedis",
+        "cs.matemaster.jackson"
+})
 public class JedisApplication {
     public static void main(String[] args) {
 
