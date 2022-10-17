@@ -23,6 +23,7 @@
         <module>ibee-jackson</module>
         <module>ibee-common</module>
         <module>ibee-tech</module>
+        <module>ibee-boot</module>
     </modules>
 
     <properties>
