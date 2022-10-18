@@ -19,6 +19,7 @@
         <module>ibee-demo-springdoc</module>
         <module>ibee-demo-dbcp</module>
         <module>ibee-demo-httpcomponents</module>
+        <module>ibee-demo-jedis</module>
     </modules>
 
     <properties>
