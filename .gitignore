@@ -22,3 +22,4 @@
 /ibee-tech/ibee-tech-redis/target/
 
 #ibee开箱即用组件
+/ibee-boot/ibee-boot-jedis/target/
