@@ -1,6 +1,7 @@
 package cs.matemaster.demo.jedis.config;
 
 
+import cs.matemaster.demo.jedis.template.CommonJedisClient;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +36,7 @@ public class JedisClientConfig {
         return template;
     }
 
-    @Bean
+
     public Jedis jedisClient() {
         JedisPoolConfig config = new JedisPoolConfig();
         config.setLifo(properties.getInfo());
@@ -50,5 +51,10 @@ public class JedisClientConfig {
         try (JedisPool jedisPool = new JedisPool(config, properties.getHost(), properties.getPort(), 2000, properties.getPassword())) {
             return jedisPool.getResource();
         }
+    }
+
+    @Bean
+    public CommonJedisClient commonJedisClient() {
+        return new CommonJedisClient(jedisClient());
     }
 }

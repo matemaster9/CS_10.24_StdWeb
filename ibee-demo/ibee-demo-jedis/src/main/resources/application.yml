@@ -1,4 +1,7 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
+
   redis:
     host: 10.37.129.101
     port: 6379
