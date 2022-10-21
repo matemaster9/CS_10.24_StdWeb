@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 public class JedisClientConfig {
 
-    private JedisClientYml jedisClientYml;
-
+    private BootJedisClientConfig bootJedisClientConfig;
 
 }
