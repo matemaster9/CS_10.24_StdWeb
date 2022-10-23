@@ -15,6 +15,7 @@
 /ibee-demo/ibee-demo-web/target/
 /ibee-demo/ibee-demo-swagger3/target/
 /ibee-demo/ibee-demo-jedis/target/
+/ibee-demo/ibee-demo-es/target/
 
 #ibee技术项目
 /ibee-tech/ibee-tech-springdoc/target/
@@ -23,4 +24,3 @@
 
 #ibee开箱即用组件
 /ibee-boot/ibee-boot-jedis/target/
-/ibee-demo/ibee-demo-es/target/
