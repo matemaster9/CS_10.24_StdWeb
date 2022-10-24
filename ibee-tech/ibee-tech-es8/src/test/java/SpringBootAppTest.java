@@ -4,6 +4,7 @@ import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import cs.matemaster.tech.es8.ElasticApplication;
 import cs.matemaster.tech.es8.model.StaffWorkLogDto;
 import cs.matemaster.tech.es8.model.SystemUserDto;
@@ -88,6 +89,27 @@ public class SpringBootAppTest {
                             .id(String.valueOf(61064090)),
                     SystemUserDto.class);
             elasticLogger.debug(response.toString());
+        } catch (IOException e) {
+            elasticLogger.debug(e.getMessage());
+        }
+    }
+
+    @Test
+    public void test4() {
+        try {
+            // 原生对象
+            GetResponse<SystemUserDto> systemUserDtoGetResponse = elasticsearchClient.get(req -> req
+                            .index("systemuser")
+                            .id(String.valueOf(61064090)),
+                    SystemUserDto.class);
+            elasticLogger.info(systemUserDtoGetResponse.toString());
+
+            // 原生json
+            GetResponse<ObjectNode> objectNodeGetResponse = elasticsearchClient.get(req -> req
+                            .index("systemuser")
+                            .id(String.valueOf(61064090)),
+                    ObjectNode.class);
+            elasticLogger.info(objectNodeGetResponse.toString());
         } catch (IOException e) {
             elasticLogger.debug(e.getMessage());
         }
