@@ -1,6 +1,7 @@
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import cs.matemaster.tech.es8.ElasticApplication;
@@ -74,6 +75,19 @@ public class SpringBootAppTest {
             BulkResponse response = elasticsearchClient.bulk(bulkRequest);
             elasticLogger.info(bulkRequest.toString());
             elasticLogger.info(response.toString());
+        } catch (IOException e) {
+            elasticLogger.debug(e.getMessage());
+        }
+    }
+
+    @Test
+    public void test3() {
+        try {
+            GetResponse<SystemUserDto> response = elasticsearchClient.get(req -> req
+                            .index("systemuser")
+                            .id(String.valueOf(61064090)),
+                    SystemUserDto.class);
+            elasticLogger.debug(response.toString());
         } catch (IOException e) {
             elasticLogger.debug(e.getMessage());
         }
