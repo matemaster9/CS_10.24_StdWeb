@@ -1,0 +1,9 @@
+{
+  "_index": "systemuser",
+  "found": true,
+  "_id": "61064090",
+  "_primary_term": 1,
+  "_seq_no": 0,
+  "_source": "SystemUserDto(username=61064090, password=VHFswfgNrN92414376)",
+  "_version": 1
+}
