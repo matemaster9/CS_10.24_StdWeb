@@ -4,6 +4,7 @@ import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import cs.matemaster.tech.es8.ElasticApplication;
 import cs.matemaster.tech.es8.model.StaffWorkLogDto;
@@ -110,6 +111,22 @@ public class SpringBootAppTest {
                             .id(String.valueOf(61064090)),
                     ObjectNode.class);
             elasticLogger.info(objectNodeGetResponse.toString());
+        } catch (IOException e) {
+            elasticLogger.debug(e.getMessage());
+        }
+    }
+
+    @Test
+    public void test5() {
+        try {
+            SearchResponse<StaffWorkLogDto> response = elasticsearchClient.search(req -> req
+                            .index("staffworklog")
+                            .query(q -> q
+                                    .match(m -> m
+                                            .field("staffCode")
+                                            .query("MateMaster"))),
+                    StaffWorkLogDto.class);
+            elasticLogger.info(response.toString());
         } catch (IOException e) {
             elasticLogger.debug(e.getMessage());
         }
