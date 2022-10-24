@@ -1,8 +1,11 @@
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import cs.matemaster.tech.es8.ElasticApplication;
 import cs.matemaster.tech.es8.model.StaffWorkLogDto;
+import cs.matemaster.tech.es8.model.SystemUserDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -13,6 +16,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author matemaster
@@ -44,11 +50,32 @@ public class SpringBootAppTest {
         IndexResponse response = null;
         try {
             response = elasticsearchClient.index(request);
+            elasticLogger.info(request.toString());
+            elasticLogger.info(response.toString());
         } catch (IOException e) {
             elasticLogger.error(e.getMessage());
         }
+    }
 
-        elasticLogger.info(request.toString());
-        elasticLogger.info(response.toString());
+    @Test
+    public void test2() {
+        List<SystemUserDto> systemUserList = Stream.generate(SystemUserDto::mock).limit(10).collect(Collectors.toList());
+
+        BulkRequest.Builder bulkRequestBuilder = new BulkRequest.Builder();
+        systemUserList.forEach(systemUser -> bulkRequestBuilder.operations(opr -> opr.index(
+                idx -> idx.index("systemuser")
+                        .id(String.valueOf(systemUser.getUsername()))
+                        .document(systemUser)
+        )));
+
+        BulkRequest bulkRequest = bulkRequestBuilder.build();
+
+        try {
+            BulkResponse response = elasticsearchClient.bulk(bulkRequest);
+            elasticLogger.info(bulkRequest.toString());
+            elasticLogger.info(response.toString());
+        } catch (IOException e) {
+            elasticLogger.debug(e.getMessage());
+        }
     }
 }
