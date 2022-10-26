@@ -31,7 +31,6 @@ public class ElasticConfig {
 
     @Bean
     public ElasticsearchClient elasticsearchClient() {
-
         RestClient restClient = RestClient
                 .builder(new HttpHost(elasticYml.getAddress(), elasticYml.getPort(), elasticYml.getScheme()))
                 .setHttpClientConfigCallback(getHttpClientConfigCallback())
@@ -41,9 +40,7 @@ public class ElasticConfig {
     }
 
     public RestClientBuilder.HttpClientConfigCallback getHttpClientConfigCallback() {
-
         return httpAsyncClientBuilder -> {
-
             // 配置es 用户密码认证
             final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
             credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(elasticYml.getUsername(), elasticYml.getPassword()));
