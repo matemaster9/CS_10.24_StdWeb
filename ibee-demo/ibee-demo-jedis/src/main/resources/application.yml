@@ -1,0 +1,27 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  redis:
+    host: 10.37.129.101
+    port: 6379
+    password: matemaster98
+
+jedis-client:
+  host: 10.37.129.101
+  port: 6379
+  password: matemaster98
+  max-wait-mills: -1
+  max-total: 8
+  max-idle: 8
+  min-idle: 0
+  test-while-idle: true
+  time-between-eviction-runs-millis: -1
+  min-evictable-idle-time-millis: -1
+  num-tests-per-eviction-run: -1
+  block-when-exhausted: true
+  info: true
+  test-on-borrow: true
+  test-on-return: true
+  fairness: false
+  jmx-enabled: true

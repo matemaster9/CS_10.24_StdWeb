@@ -3,25 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>StdWeb</artifactId>
+        <artifactId>ibee-tech</artifactId>
         <groupId>cs.matemaster</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ibee-demo</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>ibee-demo-json</module>
-        <module>ibee-demo-web</module>
-        <module>ibee-demo-swagger3</module>
-        <module>ibee-demo-config</module>
-        <module>ibee-demo-springdoc</module>
-        <module>ibee-demo-dbcp</module>
-        <module>ibee-demo-httpcomponents</module>
-        <module>ibee-demo-jedis</module>
-        <module>ibee-demo-es</module>
-    </modules>
+    <artifactId>ibee-tech-httpclient4</artifactId>
+
+    <description>apache-httpclient4技术研究</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -30,9 +20,25 @@
     </properties>
 
     <dependencies>
+
+        <!--httpclient v4-->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+
+        <!--junit v4-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cs.matemaster.jackson</groupId>
+            <artifactId>ibee-jackson</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 

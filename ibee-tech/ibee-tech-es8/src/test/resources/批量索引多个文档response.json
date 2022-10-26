@@ -1,0 +1,166 @@
+{
+  "errors": false,
+  "items": [
+    {
+      "index": {
+        "_id": "61064090",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 0,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "53413770",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 1,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "21787031",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 2,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "65495934",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 3,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "84055784",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 4,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "60107355",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 5,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "13107297",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 6,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "26613741",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 7,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "12490684",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 8,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    },
+    {
+      "index": {
+        "_id": "27615079",
+        "_index": "systemuser",
+        "status": 201,
+        "_primary_term": 1,
+        "result": "created",
+        "_seq_no": 9,
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_version": 1
+      }
+    }
+  ],
+  "took": 50
+}

@@ -1,0 +1,25 @@
+{
+  "took": 1,
+  "timed_out": false,
+  "_shards": {
+    "failed": 0.0,
+    "successful": 1.0,
+    "total": 1.0,
+    "skipped": 0.0
+  },
+  "hits": {
+    "total": {
+      "relation": "eq",
+      "value": 1
+    },
+    "hits": [
+      {
+        "_index": "staffworklog",
+        "_id": "MateMaster",
+        "_score": 0.2876821,
+        "_source": "StaffWorkLogDto(onDuty=2022-10-24T08:30, offDuty=2022-10-24T17:30, workingHours=7, staffCode=MateMaster)"
+      }
+    ],
+    "max_score": 0.2876821
+  }
+}

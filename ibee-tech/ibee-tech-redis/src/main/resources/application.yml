@@ -1,0 +1,18 @@
+spring:
+  redis:
+    database: 0
+    host: 10.37.129.101
+    port: 6379
+    password: matemaster98
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 9
+        max-wait: 10000ms
+        min-idle: 0
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    supported-submit-methods: get,post,put,delete
+  packages-to-scan: cs.matemaster.tech.controller

@@ -3,14 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ibee-demo</artifactId>
+        <artifactId>ibee-boot</artifactId>
         <groupId>cs.matemaster</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cs.matemaster.web</groupId>
-    <artifactId>ibee-demo-web</artifactId>
+    <artifactId>ibee-boot-jedis</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,28 +18,29 @@
     </properties>
 
     <dependencies>
+
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
+        <!--jedis-->
         <dependency>
-            <groupId>cs.matemaster.swagger</groupId>
-            <artifactId>ibee-swagger</artifactId>
-            <version>1.0</version>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
 
+        <!--configuration-->
         <dependency>
-            <groupId>cs.matemaster.global</groupId>
-            <artifactId>ibee-global</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
     </dependencies>
-
 </project>
