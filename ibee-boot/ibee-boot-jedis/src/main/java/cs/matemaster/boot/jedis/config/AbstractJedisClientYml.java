@@ -9,6 +9,11 @@ import lombok.Data;
 public abstract class AbstractJedisClientYml {
 
     /**
+     * 开关
+     */
+    private Boolean enable;
+
+    /**
      * redis服务器ip
      */
     private String host;
