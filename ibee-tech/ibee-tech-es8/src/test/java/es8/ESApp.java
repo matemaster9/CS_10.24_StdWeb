@@ -3,6 +3,7 @@ package es8;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import cs.matemaster.tech.es8.ElasticApplication;
 import cs.matemaster.tech.es8.config.ElasticConstant;
@@ -60,6 +61,23 @@ public class ESApp {
             elasticLogger.info(bulkResponse.toString());
         } catch (IOException e) {
             elasticLogger.error(e.getMessage());
+        }
+    }
+
+    @Test
+    public void getAccountByDocId() {
+        try {
+            GetResponse<BankAccount> response = elasticsearchClient.get((builder -> builder
+                            .index(ElasticConstant.BankAccount)
+                            .id("M100")),
+                    BankAccount.class
+            );
+
+            elasticLogger.info(response.toString());
+            elasticLogger.info(response.source().toString());
+            elasticLogger.info(response.fields().toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
