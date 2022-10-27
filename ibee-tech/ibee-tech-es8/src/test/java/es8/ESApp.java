@@ -1,9 +1,12 @@
 package es8;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import cs.matemaster.tech.es8.ElasticApplication;
 import cs.matemaster.tech.es8.config.ElasticConstant;
@@ -34,6 +37,9 @@ public class ESApp {
     @Autowired
     private ElasticsearchClient elasticsearchClient;
 
+    /**
+     * 将M100~M999的账户数据存放es
+     */
     @Test
     public void mock() {
         List<BankAccount> bankAccounts = new ArrayList<>(900);
@@ -64,6 +70,9 @@ public class ESApp {
         }
     }
 
+    /**
+     * 依据文档id直接查询文档存放实例对象
+     */
     @Test
     public void getAccountByDocId() {
         try {
@@ -76,6 +85,26 @@ public class ESApp {
             elasticLogger.info(response.toString());
             elasticLogger.info(response.source().toString());
             elasticLogger.info(response.fields().toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 查出结果为空？存疑？？？？？
+     */
+    @Test
+    public void termAccountId() {
+        SearchRequest request = SearchRequest.of(builder -> builder
+                .index(ElasticConstant.BankAccount)
+                .query(QueryBuilders.term(termQ -> termQ.field("accountId").value("M100")))
+        );
+
+        try {
+            SearchResponse<BankAccount> response = elasticsearchClient.search(request, BankAccount.class);
+            elasticLogger.info(request.toString());
+            elasticLogger.info(response.toString());
+            elasticLogger.info(response.hits().hits().toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
