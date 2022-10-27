@@ -10,4 +10,6 @@ public interface ElasticConstant {
     String SystemUserIndex = "systemuser";
 
     String StaffWorkLogIndex = "staffworklog";
+
+    String BankAccount = "bank_account";
 }
