@@ -1,10 +1,13 @@
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import cs.matemaster.tech.es8.config.ElasticConstant;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -24,7 +27,7 @@ public class QueryDSLTest {
         );
 
         Query query = Query.of(builder -> builder.term(termQuery));
-        Query term = QueryBuilders.term(builder -> builder
+        Query term = QueryBuilders.term(termQ -> termQ
                 .field("username")
                 .value("Matemaster")
         );
@@ -61,13 +64,70 @@ public class QueryDSLTest {
     }
 
     @Test
+    public void terms_v5() {
+        List<String> values = Arrays.asList("bvw32iu388", "v2hg234", "9w28e4h9uv");
+
+        TermsQuery termsQuery = TermsQuery.of(builder -> builder
+                .field("_id")
+                .terms(termsQField -> termsQField.value(values.stream().map(FieldValue::of).collect(Collectors.toList())))
+        );
+
+        Query terms = QueryBuilders.terms(termsQ -> termsQ
+                .field("_id")
+                .terms(termsQField -> termsQField.value(values.stream().map(FieldValue::of).collect(Collectors.toList())))
+        );
+
+        SearchRequest request = SearchRequest.of(req -> req
+                .index(ElasticConstant.BankAccount)
+                .query(terms)
+        );
+
+        System.out.println(request);
+    }
+
+    @Test
     public void bool() {
 
+        BoolQuery boolQuery = BoolQuery.of(builder -> builder
+                .must(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M100")))
+                .must(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M999")))
+                .minimumShouldMatch("1")
+        );
+
+        Query bool = QueryBuilders.bool(boolQ -> boolQ
+                .must(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M100")))
+                .must(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M999")))
+                .minimumShouldMatch("1")
+        );
+
+        SearchRequest request = SearchRequest.of(req -> req
+                .index(ElasticConstant.BankAccount)
+                .query(bool)
+        );
+
+        System.out.println(boolQuery);
+        System.out.println(request);
     }
 
     @Test
     public void match() {
+        MatchQuery matchQuery = MatchQuery.of(builder -> builder
+                .field("accountId")
+                .query("M100")
+        );
 
+        Query match = QueryBuilders.match(matchQ -> matchQ
+                .field("accountId")
+                .query("M100")
+        );
+
+        SearchRequest request = SearchRequest.of(req -> req
+                .index(ElasticConstant.BankAccount)
+                .query(match)
+        );
+
+        System.out.println(matchQuery);
+        System.out.println(request);
     }
 
 
