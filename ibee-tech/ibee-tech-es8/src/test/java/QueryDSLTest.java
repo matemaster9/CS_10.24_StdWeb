@@ -157,8 +157,8 @@ public class QueryDSLTest {
     public void range() {
         RangeQuery rangeQuery = RangeQuery.of(builder -> builder
                 .field("amount")
-                .lte(JsonData.of(BigDecimal.valueOf(40000.0)))
                 .gte(JsonData.of(BigDecimal.valueOf(100000.0)))
+                .lte(JsonData.of(BigDecimal.valueOf(400000.0)))
         );
 
         Query range = QueryBuilders.range(rangeQ -> rangeQ
