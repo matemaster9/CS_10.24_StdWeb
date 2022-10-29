@@ -11,5 +11,5 @@ public interface ElasticConstant {
 
     String StaffWorkLogIndex = "staffworklog";
 
-    String BankAccount = "bank_account";
+    String BankAccountIndex = "bank_account";
 }

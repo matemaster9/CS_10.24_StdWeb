@@ -1,4 +1,8 @@
+import co.elastic.clients.elasticsearch._types.FieldSort;
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.SortOptionsBuilders;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
@@ -9,6 +13,9 @@ import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigBuilders;
+import co.elastic.clients.elasticsearch.core.search.SourceFilter;
 import co.elastic.clients.json.JsonData;
 import cs.matemaster.tech.es8.config.ElasticConstant;
 import org.junit.Test;
@@ -82,7 +89,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccount)
+                .index(ElasticConstant.BankAccountIndex)
                 .query(terms)
         );
 
@@ -105,7 +112,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccount)
+                .index(ElasticConstant.BankAccountIndex)
                 .query(bool)
         );
 
@@ -126,7 +133,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccount)
+                .index(ElasticConstant.BankAccountIndex)
                 .query(match)
         );
 
@@ -140,7 +147,7 @@ public class QueryDSLTest {
 
         MatchAllQuery matchAllQuery = MatchAllQuery.of(builder -> builder.boost(1.0f));
         Query matchAll = QueryBuilders.matchAll(matchAllQ -> matchAllQ.boost(1.0f));
-        SearchRequest request = SearchRequest.of(req -> req.index(ElasticConstant.BankAccount).query(matchAll));
+        SearchRequest request = SearchRequest.of(req -> req.index(ElasticConstant.BankAccountIndex).query(matchAll));
 
         System.out.println(matchAllQuery);
         System.out.println(request);
@@ -161,7 +168,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccount)
+                .index(ElasticConstant.BankAccountIndex)
                 .query(range)
         );
 
@@ -182,5 +189,62 @@ public class QueryDSLTest {
     @Test
     public void prefix() {
 
+    }
+
+    @Test
+    public void sort() {
+        SortOrder sortOrder = SortOrder.Asc;
+        FieldSort fieldSort = FieldSort.of(builder -> builder.field("amount").order(sortOrder));
+        SortOptions sortOptions = SortOptions.of(builder -> builder.field(fieldSort));
+
+        SearchRequest request = SearchRequest.of(builder -> builder
+                .index(ElasticConstant.BankAccountIndex)
+                .query(QueryBuilders.matchAll().build()._toQuery())
+                .sort(sortOptions)
+        );
+
+        System.out.println(sortOrder);
+        System.out.println(fieldSort);
+        System.out.println(sortOptions);
+        System.out.println(request);
+
+
+        SearchRequest searchRequest = SearchRequest.of(builder -> builder
+                .index(ElasticConstant.BankAccountIndex)
+                .query(QueryBuilders.matchAll().build()._toQuery())
+                .sort(SortOptionsBuilders.field(filedSortBuilder -> filedSortBuilder
+                        .field("amount")
+                        .order(SortOrder.Desc)
+                ))
+        );
+
+        System.out.println(searchRequest);
+    }
+
+    @Test
+    public void searchRequest() {
+
+        SourceFilter sourceFilter = SourceFilter.of(builder -> builder.includes(Arrays.asList("staffCode", "workingHours")));
+        SourceConfig sourceConfig = SourceConfig.of(builder -> builder.filter(sourceFilter));
+        SearchRequest step = SearchRequest.of(req -> req
+                .index(ElasticConstant.StaffWorkLogIndex)
+                .query(QueryBuilders.matchAll().build()._toQuery())
+                .source(sourceConfig)
+        );
+
+        SearchRequest request = SearchRequest.of(req -> req
+                .index(ElasticConstant.StaffWorkLogIndex)
+                .query(QueryBuilders.matchAll().build()._toQuery())
+                .source(SourceConfig.of(configBuilder -> configBuilder
+                                .filter(SourceFilter.of(filterConfig -> filterConfig
+                                                .includes(Arrays.asList("staffCode", "workingHours"))
+                                        )
+                                )
+                        )
+                )
+        );
+
+        System.out.println(request);
+        System.out.println(step);
     }
 }

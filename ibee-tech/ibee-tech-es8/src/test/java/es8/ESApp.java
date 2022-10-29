@@ -54,7 +54,7 @@ public class ESApp {
         List<BulkOperation> bulkOperationList = bankAccounts.stream().map(it -> BulkOperation.of(
                         bulkOperationBuilder -> bulkOperationBuilder.index(
                                 indexOperationBuilder -> indexOperationBuilder
-                                        .index(ElasticConstant.BankAccount)
+                                        .index(ElasticConstant.BankAccountIndex)
                                         .id(it.getAccountId())
                                         .document(it))
                 )
@@ -77,7 +77,7 @@ public class ESApp {
     public void getAccountByDocId() {
         try {
             GetResponse<BankAccount> response = elasticsearchClient.get((builder -> builder
-                            .index(ElasticConstant.BankAccount)
+                            .index(ElasticConstant.BankAccountIndex)
                             .id("M100")),
                     BankAccount.class
             );
@@ -97,7 +97,7 @@ public class ESApp {
     @Test
     public void termAccountId() {
         SearchRequest request = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccount)
+                .index(ElasticConstant.BankAccountIndex)
                 .query(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M100")))
         );
 
@@ -114,7 +114,7 @@ public class ESApp {
     @Test
     public void match() {
         SearchRequest request = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccount)
+                .index(ElasticConstant.BankAccountIndex)
                 .query(QueryBuilders.match(matchQ -> matchQ.field("accountId").query("M100")))
         );
 
