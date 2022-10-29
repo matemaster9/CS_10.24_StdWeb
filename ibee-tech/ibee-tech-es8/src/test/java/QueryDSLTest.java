@@ -1,15 +1,19 @@
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch._types.query_dsl.RangeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.json.JsonData;
 import cs.matemaster.tech.es8.config.ElasticConstant;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -134,11 +138,35 @@ public class QueryDSLTest {
     @Test
     public void matchAll() {
 
+        MatchAllQuery matchAllQuery = MatchAllQuery.of(builder -> builder.boost(1.0f));
+        Query matchAll = QueryBuilders.matchAll(matchAllQ -> matchAllQ.boost(1.0f));
+        SearchRequest request = SearchRequest.of(req -> req.index(ElasticConstant.BankAccount).query(matchAll));
+
+        System.out.println(matchAllQuery);
+        System.out.println(request);
     }
 
     @Test
     public void range() {
+        RangeQuery rangeQuery = RangeQuery.of(builder -> builder
+                .field("amount")
+                .lte(JsonData.of(BigDecimal.valueOf(40000.0)))
+                .gte(JsonData.of(BigDecimal.valueOf(100000.0)))
+        );
 
+        Query range = QueryBuilders.range(rangeQ -> rangeQ
+                .field("amount")
+                .gte(JsonData.of(BigDecimal.valueOf(100000.0)))
+                .lte(JsonData.of(BigDecimal.valueOf(400000.0)))
+        );
+
+        SearchRequest request = SearchRequest.of(req -> req
+                .index(ElasticConstant.BankAccount)
+                .query(range)
+        );
+
+        System.out.println(rangeQuery);
+        System.out.println(request);
     }
 
     @Test
