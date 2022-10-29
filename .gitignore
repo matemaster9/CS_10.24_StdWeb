@@ -1,4 +1,5 @@
 /.idea/
+*.iml
 #ibee项目
 /ibee-global/target/
 /ibee-jackson/target/
