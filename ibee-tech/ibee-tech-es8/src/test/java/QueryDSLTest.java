@@ -6,6 +6,7 @@ import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.PrefixQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch._types.query_dsl.RangeQuery;
@@ -188,7 +189,25 @@ public class QueryDSLTest {
 
     @Test
     public void prefix() {
+        PrefixQuery prefixQuery = PrefixQuery.of(builder -> builder
+                .field("accountId")
+                .value("M")
+                .boost(1.0F)
+        );
 
+        Query prefix = QueryBuilders.prefix(prefixQ -> prefixQ
+                .field("accountId")
+                .value("M")
+                .boost(1.0F)
+        );
+
+        SearchRequest request = SearchRequest.of(builder -> builder
+                .index(ElasticConstant.BankAccountIndex)
+                .query(prefix)
+        );
+
+        System.out.println(prefixQuery);
+        System.out.println(request);
     }
 
     @Test
