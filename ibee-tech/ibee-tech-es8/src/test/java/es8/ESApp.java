@@ -91,13 +91,31 @@ public class ESApp {
     }
 
     /**
-     * 查出结果为空？存疑？？？？？
+     * text查出结果为空？存疑？？？？？
+     * keyword查询m100
      */
     @Test
     public void termAccountId() {
         SearchRequest request = SearchRequest.of(builder -> builder
                 .index(ElasticConstant.BankAccount)
-                .query(QueryBuilders.term(termQ -> termQ.field("accountId").value("M100")))
+                .query(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M100")))
+        );
+
+        try {
+            SearchResponse<BankAccount> response = elasticsearchClient.search(request, BankAccount.class);
+            elasticLogger.info(request.toString());
+            elasticLogger.info(response.toString());
+            elasticLogger.info(response.hits().hits().toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void match() {
+        SearchRequest request = SearchRequest.of(builder -> builder
+                .index(ElasticConstant.BankAccount)
+                .query(QueryBuilders.match(matchQ -> matchQ.field("accountId").query("M100")))
         );
 
         try {
