@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @AllArgsConstructor
-public class RedisTemplatePro {
+public class EnhancedRedisTemplate {
 
     private CommonJedisClient commonJedisClient;
 
