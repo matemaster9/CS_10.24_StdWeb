@@ -15,10 +15,9 @@ import co.elastic.clients.elasticsearch._types.query_dsl.TermsQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
-import co.elastic.clients.elasticsearch.core.search.SourceConfigBuilders;
 import co.elastic.clients.elasticsearch.core.search.SourceFilter;
 import co.elastic.clients.json.JsonData;
-import cs.matemaster.tech.es8.config.ElasticConstant;
+import cs.matemaster.tech.es8.config.ElasticConstants;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -90,7 +89,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(terms)
         );
 
@@ -113,7 +112,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(bool)
         );
 
@@ -134,7 +133,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(match)
         );
 
@@ -148,7 +147,7 @@ public class QueryDSLTest {
 
         MatchAllQuery matchAllQuery = MatchAllQuery.of(builder -> builder.boost(1.0f));
         Query matchAll = QueryBuilders.matchAll(matchAllQ -> matchAllQ.boost(1.0f));
-        SearchRequest request = SearchRequest.of(req -> req.index(ElasticConstant.BankAccountIndex).query(matchAll));
+        SearchRequest request = SearchRequest.of(req -> req.index(ElasticConstants.BankAccountIndex).query(matchAll));
 
         System.out.println(matchAllQuery);
         System.out.println(request);
@@ -169,7 +168,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(range)
         );
 
@@ -202,7 +201,7 @@ public class QueryDSLTest {
         );
 
         SearchRequest request = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(prefix)
         );
 
@@ -217,7 +216,7 @@ public class QueryDSLTest {
         SortOptions sortOptions = SortOptions.of(builder -> builder.field(fieldSort));
 
         SearchRequest request = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(QueryBuilders.matchAll().build()._toQuery())
                 .sort(sortOptions)
         );
@@ -229,7 +228,7 @@ public class QueryDSLTest {
 
 
         SearchRequest searchRequest = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(QueryBuilders.matchAll().build()._toQuery())
                 .sort(SortOptionsBuilders.field(filedSortBuilder -> filedSortBuilder
                         .field("amount")
@@ -246,13 +245,13 @@ public class QueryDSLTest {
         SourceFilter sourceFilter = SourceFilter.of(builder -> builder.includes(Arrays.asList("staffCode", "workingHours")));
         SourceConfig sourceConfig = SourceConfig.of(builder -> builder.filter(sourceFilter));
         SearchRequest step = SearchRequest.of(req -> req
-                .index(ElasticConstant.StaffWorkLogIndex)
+                .index(ElasticConstants.StaffWorkLogIndex)
                 .query(QueryBuilders.matchAll().build()._toQuery())
                 .source(sourceConfig)
         );
 
         SearchRequest request = SearchRequest.of(req -> req
-                .index(ElasticConstant.StaffWorkLogIndex)
+                .index(ElasticConstants.StaffWorkLogIndex)
                 .query(QueryBuilders.matchAll().build()._toQuery())
                 .source(SourceConfig.of(configBuilder -> configBuilder
                                 .filter(SourceFilter.of(filterConfig -> filterConfig
