@@ -8,8 +8,7 @@ package cs.matemaster.tech.es8.config;
 public interface ElasticConstant {
 
     String SystemUserIndex = "systemuser";
-
     String StaffWorkLogIndex = "staffworklog";
-
     String BankAccountIndex = "bank_account";
+    String CollegeStudentIndex = "es_college_student";
 }

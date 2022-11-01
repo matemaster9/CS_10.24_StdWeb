@@ -1,7 +1,7 @@
-package es8.service.impl;
+package cs.matemaster.tech.es8.service.impl;
 
 import cs.matemaster.tech.es8.model.BankAccount;
-import es8.service.BankAccountService;
+import cs.matemaster.tech.es8.service.BankAccountService;
 import org.springframework.stereotype.Service;
 
 /**

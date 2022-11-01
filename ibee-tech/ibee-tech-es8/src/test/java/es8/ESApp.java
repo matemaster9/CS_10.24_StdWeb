@@ -11,6 +11,7 @@ import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import cs.matemaster.tech.es8.ElasticApplication;
 import cs.matemaster.tech.es8.config.ElasticConstant;
 import cs.matemaster.tech.es8.model.BankAccount;
+import cs.matemaster.tech.es8.service.CollegeStudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -36,6 +37,9 @@ public class ESApp {
 
     @Autowired
     private ElasticsearchClient elasticsearchClient;
+
+    @Autowired
+    private CollegeStudentService collegeStudentService;
 
     /**
      * 将M100~M999的账户数据存放es
@@ -126,5 +130,10 @@ public class ESApp {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    public void name() throws IOException {
+        collegeStudentService.mock();
     }
 }
