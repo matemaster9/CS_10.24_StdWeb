@@ -1,10 +1,15 @@
-spring:
-  profiles:
-    active: dev
+list:
+  - 10010
+  - 10020
+  - 10030
 
-  ## 启用延迟加载
-  main:
-    lazy-initialization: true
+array: [ 1,2,3,4,5,6,7,8,9,0 ]
+
+map:
+  key0: value0
+  key1: value1
+  key2: value2
+  key3: value3
 
 configurable-yaml:
   username: matemaster
@@ -44,3 +49,7 @@ configurable-yaml:
   computer-year: 1970-01-01
   enable: on
   com: Oracle
+
+driver-class: &Driver com.mysql.cj.Driver
+
+driver: *Driver
