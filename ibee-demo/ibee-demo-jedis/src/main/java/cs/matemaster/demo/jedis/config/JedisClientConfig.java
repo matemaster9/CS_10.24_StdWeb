@@ -36,7 +36,7 @@ public class JedisClientConfig {
         return template;
     }
 
-
+    @Bean
     public Jedis jedisClient() {
         JedisPoolConfig config = new JedisPoolConfig();
         config.setLifo(properties.getInfo());
