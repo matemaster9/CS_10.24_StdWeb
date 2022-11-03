@@ -1,4 +1,5 @@
 import cs.matemaster.demo.config.ExternalizedConfigApplication;
+import cs.matemaster.demo.config.yaml.ConfigurableYaml;
 import cs.matemaster.demo.config.yaml.LoginUser;
 import cs.matemaster.demo.config.yaml.MacStudio;
 import org.junit.Test;
@@ -23,6 +24,9 @@ public class SnakeYamlTest {
     @Autowired
     private MacStudio macStudio;
 
+    @Autowired
+    private ConfigurableYaml configurableYaml;
+
     @Test
     public void test1() {
         System.out.println(loginUser);
@@ -35,5 +39,11 @@ public class SnakeYamlTest {
         // snakeyaml的map底层使用 java.util.LinkedHashMap
         Map<String, List<String>> resources = macStudio.getResources();
         System.out.println(resources.getClass());
+    }
+
+    @Test
+    public void test2() {
+        System.out.println(configurableYaml);
+        System.out.println(configurableYaml.getCom().ordinal());
     }
 }
