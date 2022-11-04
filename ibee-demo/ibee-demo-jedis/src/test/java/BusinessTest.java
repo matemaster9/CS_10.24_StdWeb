@@ -23,4 +23,6 @@ public class BusinessTest {
         EsportPlayer esportPlayer = EsportPlayer.mock();
         jedisClient.set("EsportPlayer:" + esportPlayer.getName() , JacksonUtil.serialize(esportPlayer));
     }
+
+
 }
