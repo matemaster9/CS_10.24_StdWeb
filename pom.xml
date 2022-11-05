@@ -24,6 +24,7 @@
         <module>ibee-common</module>
         <module>ibee-tech</module>
         <module>ibee-boot</module>
+        <module>ibee-webserver</module>
     </modules>
 
     <properties>
