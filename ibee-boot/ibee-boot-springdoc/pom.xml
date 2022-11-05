@@ -3,20 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>StdWeb</artifactId>
+        <artifactId>ibee-boot</artifactId>
         <groupId>cs.matemaster</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ibee-boot</artifactId>
-    <packaging>pom</packaging>
-
-    <description>开箱即用组件</description>
-    <modules>
-        <module>ibee-boot-jedis</module>
-        <module>ibee-boot-springdoc</module>
-    </modules>
+    <artifactId>ibee-boot-springdoc</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -26,8 +19,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.11</version>
         </dependency>
     </dependencies>
+
 </project>

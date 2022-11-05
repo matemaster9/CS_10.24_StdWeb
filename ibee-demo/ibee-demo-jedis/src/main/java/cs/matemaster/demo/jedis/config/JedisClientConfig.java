@@ -20,7 +20,7 @@ import redis.clients.jedis.JedisPoolConfig;
 @AllArgsConstructor
 public class JedisClientConfig {
 
-    private JedisProperties properties;
+    private JedisClientYaml properties;
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
@@ -36,7 +36,7 @@ public class JedisClientConfig {
         return template;
     }
 
-
+    @Bean
     public Jedis jedisClient() {
         JedisPoolConfig config = new JedisPoolConfig();
         config.setLifo(properties.getInfo());
