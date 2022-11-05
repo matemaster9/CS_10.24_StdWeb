@@ -12,4 +12,6 @@ public final class SystemConstants {
 
     /*** redis key ***/
     public static final String RedisEsportPlayer = "EsportPlayer";
+
+    public static final String RedisLoginUser = "LoginUser";
 }
