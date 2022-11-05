@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "jedis-client")
-public class JedisProperties {
+public class JedisClientYaml {
 
     private String host;
 
