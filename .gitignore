@@ -26,3 +26,8 @@
 
 #ibee开箱即用组件
 /ibee-boot/ibee-boot-jedis/target/
+/ibee-boot/ibee-boot-springdoc/target/
+
+
+#业务核心组件
+/ibee-webserver/target/

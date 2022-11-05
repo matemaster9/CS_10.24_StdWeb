@@ -9,7 +9,7 @@ import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import cs.matemaster.tech.es8.ElasticApplication;
-import cs.matemaster.tech.es8.config.ElasticConstant;
+import cs.matemaster.tech.es8.config.ElasticConstants;
 import cs.matemaster.tech.es8.model.BankAccount;
 import cs.matemaster.tech.es8.service.CollegeStudentService;
 import org.junit.Test;
@@ -58,7 +58,7 @@ public class ESApp {
         List<BulkOperation> bulkOperationList = bankAccounts.stream().map(it -> BulkOperation.of(
                         bulkOperationBuilder -> bulkOperationBuilder.index(
                                 indexOperationBuilder -> indexOperationBuilder
-                                        .index(ElasticConstant.BankAccountIndex)
+                                        .index(ElasticConstants.BankAccountIndex)
                                         .id(it.getAccountId())
                                         .document(it))
                 )
@@ -81,7 +81,7 @@ public class ESApp {
     public void getAccountByDocId() {
         try {
             GetResponse<BankAccount> response = elasticsearchClient.get((builder -> builder
-                            .index(ElasticConstant.BankAccountIndex)
+                            .index(ElasticConstants.BankAccountIndex)
                             .id("M100")),
                     BankAccount.class
             );
@@ -101,7 +101,7 @@ public class ESApp {
     @Test
     public void termAccountId() {
         SearchRequest request = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(QueryBuilders.term(termQ -> termQ.field("accountId.keyword").value("M100")))
         );
 
@@ -118,7 +118,7 @@ public class ESApp {
     @Test
     public void match() {
         SearchRequest request = SearchRequest.of(builder -> builder
-                .index(ElasticConstant.BankAccountIndex)
+                .index(ElasticConstants.BankAccountIndex)
                 .query(QueryBuilders.match(matchQ -> matchQ.field("accountId").query("M100")))
         );
 

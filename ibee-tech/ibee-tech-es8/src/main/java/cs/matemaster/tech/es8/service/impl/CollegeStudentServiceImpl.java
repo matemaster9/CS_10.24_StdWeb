@@ -3,7 +3,7 @@ package cs.matemaster.tech.es8.service.impl;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
-import cs.matemaster.tech.es8.config.ElasticConstant;
+import cs.matemaster.tech.es8.config.ElasticConstants;
 import cs.matemaster.tech.es8.model.CollegeStudent;
 import cs.matemaster.tech.es8.service.CollegeStudentService;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class CollegeStudentServiceImpl implements CollegeStudentService {
         List<BulkOperation> bulkOperations = collegeStudentList.stream()
                 .map(collegeStudent -> BulkOperation.of(bulkOperationBuilder -> bulkOperationBuilder
                         .index(indexOperationBuilder -> indexOperationBuilder
-                                .index(ElasticConstant.CollegeStudentIndex)
+                                .index(ElasticConstants.CollegeStudentIndex)
                                 .id(collegeStudent.getStudentId())
                                 .document(collegeStudent)))
                 ).collect(Collectors.toList());

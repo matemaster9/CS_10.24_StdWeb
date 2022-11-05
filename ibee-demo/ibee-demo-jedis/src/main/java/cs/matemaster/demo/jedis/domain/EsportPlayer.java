@@ -18,7 +18,7 @@ public class EsportPlayer {
 
     public static EsportPlayer mock() {
         EsportPlayer player = new EsportPlayer();
-        player.setName(Math.abs(RANDOM.nextLong()));
+        player.setName(Math.abs(RANDOM.nextLong(1_000_000,9_999_999)));
         player.setAge(RANDOM.nextInt(16, 24));
         return player;
     }
