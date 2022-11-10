@@ -29,3 +29,8 @@ redis:
   test-on-return: true
   fairness: false
   jmx-enabled: true
+
+sync-thread-pool:
+  core-pool-size: 10
+  maximum-pool-size: 10
+  keep-alive-time: 60
