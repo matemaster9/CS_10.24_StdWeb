@@ -45,4 +45,28 @@ public class CompletableFutureTest {
 
         result.forEach(item -> log.info(item.toString()));
     }
+
+    @Test
+    public void case1_v2() {
+        List<String> scenicList = Arrays.asList(
+                "平湖秋月",
+                "苏堤春晓",
+                "曲院风荷",
+                "平湖秋月",
+                "断桥残雪",
+                "花港观鱼",
+                "南屏晚钟",
+                "双峰插云",
+                "雷峰夕照",
+                "三潭印月",
+                "柳浪闻莺"
+        );
+
+        List<DiscountInfo> result = scenicList.stream()
+                .map(item -> CompletableFuture.supplyAsync(() -> ShopService.getScenicArea(item))
+                        .thenApply(DiscountProduct::new)
+                        .thenCompose(discountProduct -> CompletableFuture.supplyAsync(() -> DiscountService.applyDiscount(discountProduct)))
+                        .join()
+                ).collect(Collectors.toList());
+    }
 }
