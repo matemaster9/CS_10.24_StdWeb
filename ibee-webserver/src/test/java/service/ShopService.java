@@ -1,5 +1,6 @@
 package service;
 
+import model.ScenicArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,5 +59,12 @@ public class ShopService {
         } catch (InterruptedException e) {
             log.error(e.toString());
         }
+    }
+
+    public static ScenicArea getScenicArea(String name) {
+        ScenicArea scenicArea = new ScenicArea();
+        scenicArea.setName(name);
+        scenicArea.setPrice(getPrice());
+        return scenicArea;
     }
 }

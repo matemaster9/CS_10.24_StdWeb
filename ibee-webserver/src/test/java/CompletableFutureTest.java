@@ -1,0 +1,48 @@
+import lombok.extern.slf4j.Slf4j;
+import model.DiscountInfo;
+import model.DiscountProduct;
+import org.junit.Test;
+import service.DiscountService;
+import service.ShopService;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+
+/**
+ * @author matemaster
+ */
+@Slf4j
+public class CompletableFutureTest {
+
+    @Test
+    public void case1() {
+        List<String> scenicList = Arrays.asList(
+                "平湖秋月",
+                "苏堤春晓",
+                "曲院风荷",
+                "平湖秋月",
+                "断桥残雪",
+                "花港观鱼",
+                "南屏晚钟",
+                "双峰插云",
+                "雷峰夕照",
+                "三潭印月",
+                "柳浪闻莺"
+        );
+
+        List<CompletableFuture<DiscountInfo>> collect = scenicList.stream()
+                .map(scenicName -> CompletableFuture.supplyAsync(() -> ShopService.getScenicArea(scenicName)))
+                .map(scenicAreaCompletableFuture -> scenicAreaCompletableFuture.thenApply(DiscountProduct::new))
+                .map(discountProductCompletableFuture -> discountProductCompletableFuture.thenCompose(
+                        discountProduct -> CompletableFuture.supplyAsync(() -> DiscountService.applyDiscount(discountProduct))
+                )).collect(Collectors.toList());
+
+        List<DiscountInfo> result = collect.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList());
+
+        result.forEach(item -> log.info(item.toString()));
+    }
+}
