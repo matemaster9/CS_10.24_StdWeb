@@ -63,10 +63,25 @@ public class CompletableFutureTest {
         );
 
         List<DiscountInfo> result = scenicList.stream()
-                .map(item -> CompletableFuture.supplyAsync(() -> ShopService.getScenicArea(item))
+                .map(item -> CompletableFuture
+                        .supplyAsync(() -> ShopService.getScenicArea(item))
                         .thenApply(DiscountProduct::new)
                         .thenCompose(discountProduct -> CompletableFuture.supplyAsync(() -> DiscountService.applyDiscount(discountProduct)))
                         .join()
                 ).collect(Collectors.toList());
+
+        result.forEach(item -> log.info(item.toString()));
+    }
+
+
+    @Test
+    public void case1_v3() {
+
+        CompletableFuture<Integer> future = CompletableFuture
+                .supplyAsync(() -> 10)
+                .thenApply(number -> Math.addExact(number, 100))
+                .thenCompose(val -> CompletableFuture.supplyAsync(() -> val * val));
+
+        log.info(future.join().toString());
     }
 }

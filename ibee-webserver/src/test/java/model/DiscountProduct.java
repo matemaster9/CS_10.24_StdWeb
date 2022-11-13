@@ -15,8 +15,7 @@ public class DiscountProduct {
     private DiscountCodeEnum discountCode;
 
     public DiscountProduct(ScenicArea scenicArea) {
-        DiscountProduct discountProduct = new DiscountProduct();
-        discountProduct.setProduct(scenicArea);
-        discountProduct.setDiscountCode(DiscountService.getDiscountCode());
+        product = scenicArea;
+        discountCode = DiscountCodeEnum.getRandomCode();
     }
 }
