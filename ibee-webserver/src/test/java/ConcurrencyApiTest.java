@@ -130,7 +130,7 @@ public class ConcurrencyApiTest {
 
     @Test
     public void callback() {
-        CompletableFuture
+        CompletableFuture<String> future = CompletableFuture
                 .supplyAsync(() -> {
                     networkLatency();
                     return Thread.currentThread().getName();
@@ -145,11 +145,32 @@ public class ConcurrencyApiTest {
                         log.info(funcResult);
                     }
                 });
+        future.join();
+    }
+
+    @Test
+    public void callback_1() {
+        CompletableFuture<String> future = CompletableFuture
+                .supplyAsync(() -> {
+                    networkLatencyThrowError();
+                    return Thread.currentThread().getName();
+                })
+                // 任务完成时，消费结果或报错
+                .whenComplete((funcResult, throwable) -> {
+                    if (Objects.nonNull(throwable)) {
+                        log.error(throwable.getMessage());
+                    }
+
+                    if (Objects.nonNull(funcResult)) {
+                        log.info(funcResult);
+                    }
+                });
+        future.join();
     }
 
     @Test
     public void callback_v1() {
-        CompletableFuture
+        CompletableFuture<String> future = CompletableFuture
                 .supplyAsync(() -> {
                     networkLatency();
                     return Thread.currentThread().getName();
@@ -164,6 +185,7 @@ public class ConcurrencyApiTest {
                         log.info(funcResult);
                     }
                 }, ConcurrencyTest.SyncThreadPool);
+        future.join();
     }
 
     @Test
@@ -187,6 +209,18 @@ public class ConcurrencyApiTest {
                 });
 
         log.info(handle.join());
+    }
+
+    @Test
+    public void callback_v3() {
+        CompletableFuture<Void> future = CompletableFuture
+                .runAsync(this::networkLatencyThrowError)
+                // 捕获中间异常
+                .exceptionally(throwable -> {
+                    log.error(throwable.getMessage());
+                    return null;
+                });
+        future.join();
     }
 
     private void networkLatency() {
