@@ -243,6 +243,24 @@ public class ConcurrencyApiTest {
                 .join();
     }
 
+    @Test
+    public void combine() {
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> Thread.currentThread().getName());
+        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> Thread.currentThread().getName());
+
+        // 独立组合
+        CompletableFuture<String> future = future1.thenCombine(future2, (str1, str2) -> str1 + "/" + str2);
+        log.debug(future.join());
+    }
+
+    @Test
+    public void compose() {
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> Thread.currentThread().getName());
+        // 依赖组合
+        CompletableFuture<String> future = future1.thenCompose(funcResult -> CompletableFuture.supplyAsync(() -> Thread.currentThread().getName() + "/" + funcResult));
+        log.debug(future.join());
+    }
+
     private List<String> getScenicList() {
         List<String> scenicList = Arrays.asList(
                 "平湖秋月",
