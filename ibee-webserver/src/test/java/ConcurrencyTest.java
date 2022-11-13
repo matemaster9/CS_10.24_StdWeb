@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ConcurrencyTest {
 
-    private static final ExecutorService SyncThreadPool = new ThreadPoolExecutor(
+    public static final ExecutorService SyncThreadPool = new ThreadPoolExecutor(
             10,
             10,
             60,
