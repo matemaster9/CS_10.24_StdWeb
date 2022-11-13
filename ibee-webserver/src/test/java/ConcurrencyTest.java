@@ -40,9 +40,7 @@ public class ConcurrencyTest {
         }, SyncThreadPool);
 
         // callable
-        CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(() -> {
-            return Thread.currentThread().getName();
-        }, SyncThreadPool);
+        CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(() -> Thread.currentThread().getName(), SyncThreadPool);
         System.out.println(stringCompletableFuture.get());
     }
 
