@@ -261,6 +261,26 @@ public class ConcurrencyApiTest {
         log.debug(future.join());
     }
 
+    @Test
+    public void exec() {
+        CompletableFuture<Void> async = CompletableFuture.runAsync(this::networkLatencyLog);
+        CompletableFuture<Void> async2 = CompletableFuture.runAsync(this::networkLatencyLog);
+        CompletableFuture<Void> async3 = CompletableFuture.runAsync(this::networkLatencyLog);
+
+        CompletableFuture<Void> future = CompletableFuture.allOf(async, async2, async3);
+        future.join();
+    }
+
+    @Test
+    public void exec_v1() {
+        CompletableFuture<Void> async = CompletableFuture.runAsync(this::networkLatencyLog);
+        CompletableFuture<Void> async2 = CompletableFuture.runAsync(this::networkLatencyLog);
+        CompletableFuture<Void> async3 = CompletableFuture.runAsync(this::networkLatencyLog);
+
+        CompletableFuture<Object> future = CompletableFuture.anyOf(async, async2, async3);
+        future.join();
+    }
+
     private List<String> getScenicList() {
         List<String> scenicList = Arrays.asList(
                 "平湖秋月",
@@ -283,6 +303,17 @@ public class ConcurrencyApiTest {
         try {
             // 0.5s ~ 5s 网络延迟
             TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextLong(500, 5000));
+        } catch (InterruptedException ignored) {
+
+        }
+    }
+
+    private void networkLatencyLog() {
+        try {
+            // 0.5s ~ 5s 网络延迟
+            long val = ThreadLocalRandom.current().nextLong(500, 5000);
+            TimeUnit.MILLISECONDS.sleep(val);
+            log.debug("延迟：" + val + "milliseconds");
         } catch (InterruptedException ignored) {
 
         }
