@@ -15,7 +15,9 @@ public class ConcurrencyApiTest {
 
     @Test
     public void createAsync() {
+        // 自定义池子
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> Thread.currentThread().getName(), ConcurrencyTest.SyncThreadPool);
+        // 默认池
         CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> Thread.currentThread().getName());
         log.info(future1.join());
         log.info(future2.join());
@@ -23,6 +25,7 @@ public class ConcurrencyApiTest {
 
     @Test
     public void createAsync_v1() {
+        // 无返回结果 runnable
         CompletableFuture.runAsync(() -> log.debug(Thread.currentThread().getName()), ConcurrencyTest.SyncThreadPool);
         CompletableFuture.runAsync(() -> log.debug(Thread.currentThread().getName()));
     }
@@ -34,6 +37,7 @@ public class ConcurrencyApiTest {
             return Thread.currentThread().getName();
         });
 
+        // getNow：获取结果或自定义值
         String result = future.getNow("main");
         log.info(result);
     }
@@ -45,6 +49,7 @@ public class ConcurrencyApiTest {
             return Thread.currentThread().getName();
         });
 
+        // getNow：获取结果或自定义值
         String result = future.getNow("main");
         log.info(result);
     }
@@ -58,6 +63,7 @@ public class ConcurrencyApiTest {
 
         String result;
         try {
+            // 限时获取
             result = future.get(3000L, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException ex) {
             throw new RuntimeException(ex);
