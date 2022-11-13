@@ -1,6 +1,7 @@
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
@@ -127,6 +128,66 @@ public class ConcurrencyApiTest {
         log.info(result);
     }
 
+    @Test
+    public void callback() {
+        CompletableFuture
+                .supplyAsync(() -> {
+                    networkLatency();
+                    return Thread.currentThread().getName();
+                })
+                // 任务完成时，消费结果或报错
+                .whenComplete((funcResult, throwable) -> {
+                    if (Objects.nonNull(throwable)) {
+                        log.error(throwable.getMessage());
+                    }
+
+                    if (Objects.nonNull(funcResult)) {
+                        log.info(funcResult);
+                    }
+                });
+    }
+
+    @Test
+    public void callback_v1() {
+        CompletableFuture
+                .supplyAsync(() -> {
+                    networkLatency();
+                    return Thread.currentThread().getName();
+                })
+                // 任务完成时，异步消费结果或报错
+                .whenCompleteAsync((funcResult, throwable) -> {
+                    if (Objects.nonNull(throwable)) {
+                        log.error(throwable.getMessage());
+                    }
+
+                    if (Objects.nonNull(funcResult)) {
+                        log.info(funcResult);
+                    }
+                }, ConcurrencyTest.SyncThreadPool);
+    }
+
+    @Test
+    public void callback_v2() {
+        CompletableFuture<String> handle = CompletableFuture
+                .supplyAsync(() -> {
+                    networkLatency();
+                    return Thread.currentThread().getName();
+                })
+                // 任务完成时，异步消费结果或报错
+                .handle((funcResult, throwable) -> {
+                    if (Objects.nonNull(throwable)) {
+                        log.error(throwable.getMessage());
+                        return "函数报错：" + throwable.getMessage();
+                    }
+
+                    if (Objects.nonNull(funcResult)) {
+                        log.info(funcResult);
+                    }
+                    return "函数返回值：" + funcResult;
+                });
+
+        log.info(handle.join());
+    }
 
     private void networkLatency() {
         try {
