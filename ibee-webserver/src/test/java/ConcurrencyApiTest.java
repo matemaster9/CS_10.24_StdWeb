@@ -1,6 +1,8 @@
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -221,6 +223,42 @@ public class ConcurrencyApiTest {
                     return null;
                 });
         future.join();
+    }
+
+    @Test
+    public void callback_v4() {
+        CompletableFuture<String> future = CompletableFuture
+                .supplyAsync(this::getScenicList)
+                // 消费结果，并执行额外操作
+                .thenApply(scenicList -> String.join("、", scenicList));
+        log.info(future.join());
+    }
+
+    @Test
+    public void callback_v5() {
+        CompletableFuture
+                .supplyAsync(this::getScenicList)
+                // 消费结果
+                .thenAccept(funcResult -> log.info(String.join("、", funcResult)))
+                .join();
+    }
+
+    private List<String> getScenicList() {
+        List<String> scenicList = Arrays.asList(
+                "平湖秋月",
+                "苏堤春晓",
+                "曲院风荷",
+                "平湖秋月",
+                "断桥残雪",
+                "花港观鱼",
+                "南屏晚钟",
+                "双峰插云",
+                "雷峰夕照",
+                "三潭印月",
+                "柳浪闻莺"
+        );
+        networkLatency();
+        return scenicList;
     }
 
     private void networkLatency() {
