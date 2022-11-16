@@ -1,10 +1,10 @@
-package service;
+package cn.matemaster.async.service;
 
-import constant.DiscountCodeEnum;
+import cn.matemaster.async.constant.DiscountCodeEnum;
 import lombok.extern.slf4j.Slf4j;
-import model.DiscountInfo;
-import model.DiscountProduct;
-import model.ScenicArea;
+import cn.matemaster.async.model.DiscountInfo;
+import cn.matemaster.async.model.DiscountProduct;
+import cn.matemaster.async.model.ScenicArea;
 
 import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;

@@ -1,9 +1,11 @@
+package cn.matemaster.async;
+
 import lombok.extern.slf4j.Slf4j;
-import model.DiscountInfo;
-import model.DiscountProduct;
+import cn.matemaster.async.model.DiscountInfo;
+import cn.matemaster.async.model.DiscountProduct;
 import org.junit.Test;
-import service.DiscountService;
-import service.ShopService;
+import cn.matemaster.async.service.DiscountService;
+import cn.matemaster.async.service.ShopService;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,6 @@
-package service;
+package cn.matemaster.async.service;
 
-import model.ScenicArea;
+import cn.matemaster.async.model.ScenicArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

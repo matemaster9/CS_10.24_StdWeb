@@ -1,9 +1,9 @@
-package model;
+package cn.matemaster.async.model;
 
-import constant.DiscountCodeEnum;
+import cn.matemaster.async.constant.DiscountCodeEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import service.DiscountService;
+import cn.matemaster.async.service.DiscountService;
 
 /**
  * @author matemaster

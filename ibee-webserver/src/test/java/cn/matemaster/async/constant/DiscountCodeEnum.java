@@ -1,4 +1,4 @@
-package constant;
+package cn.matemaster.async.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

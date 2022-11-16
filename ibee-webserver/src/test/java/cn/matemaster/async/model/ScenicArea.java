@@ -1,4 +1,4 @@
-package model;
+package cn.matemaster.async.model;
 
 import lombok.Data;
 
