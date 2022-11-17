@@ -13,7 +13,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -53,10 +52,7 @@ public class DataFunnelTest {
         Map<String, ActivityBaseInfoDto> activityBaseInfoMap = activityBaseInfoList.stream().collect(Collectors.toMap(ActivityBaseInfoDto::getActivityId, t -> t));
         Map<String, List<DataFunnelDto>> dataFunnelMap = dataFunnelList.stream().collect(Collectors.groupingBy(DataFunnelDto::getActivityId));
 
-        Sets.SetView<String> intersection = Sets.intersection(
-                activityBaseInfoMap.keySet(),
-                dataFunnelMap.keySet()
-        );
+        Sets.SetView<String> intersection = Sets.intersection(activityBaseInfoMap.keySet(), dataFunnelMap.keySet());
 
         List<ActivityDataFunnel> activityDataFunnelList = intersection.parallelStream()
                 .flatMap(activityId ->
